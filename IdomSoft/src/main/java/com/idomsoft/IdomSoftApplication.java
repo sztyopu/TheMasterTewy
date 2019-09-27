@@ -19,15 +19,19 @@ public class IdomSoftApplication implements CommandLineRunner {
 
 	@Override
     public void run(String[] args) throws IOException {
+		try {
+			//create ObjectMapper instance
+	        ObjectMapper objectMapper = new ObjectMapper();
 
-        //create ObjectMapper instance
-        ObjectMapper objectMapper = new ObjectMapper();
+	        //read json file and convert to szemelyDto object
+	        SzemelyDTO szemelyDTO = objectMapper.readValue(new File("Szemely_1.json"), SzemelyDTO.class);
 
-        //read json file and convert to szemelyDto object
-        SzemelyDTO szemelyDTO = objectMapper.readValue(new File("Szemely_1.json"), SzemelyDTO.class);
-
-        //print szemelyDTO details
-        System.out.println(szemelyDTO);
+	        //print szemelyDTO details
+	        System.out.println(szemelyDTO);
+		} catch (Exception e) {
+			 System.out.println(e);
+		}
+        
     }
 	
 	

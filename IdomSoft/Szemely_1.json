@@ -1,20 +1,10 @@
-[
-  {
-    "visNev": "Varga Eva",
-    "szulNev": "Csetneki Eva",
-    "aNev": "Nagy Ella",
-    "szulDat": "1988.07.26",
-    "neme": "N",
-    "allampKod": "HU"
-    
-  },
+
   {
     "visNev": "Mihok Beata",
     "szulNev": "Oroszi Beata",
     "aNev": "Nagy Katalin",
-    "szulDat": "1987.07.17",
+    "szulDat": "1987-07-17",
     "neme": "N",
     "allampKod": "HU"
     
   }
-]
