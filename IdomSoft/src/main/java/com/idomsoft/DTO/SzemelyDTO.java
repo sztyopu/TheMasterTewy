@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.idomsoft;
+package com.idomsoft.DTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -126,7 +126,19 @@ public class SzemelyDTO implements Serializable{
     public void setOkmLista(ArrayList<OkmanyDTO> okmLista) {
         this.okmLista = okmLista;
     }
-    private static final long serialVersionUID = 4L;
+    
+    
+    
+    @Override
+	public String toString() {
+		return "SzemelyDTO [visNev=" + visNev + ", szulNev=" + szulNev + ", aNev=" + aNev + ", szulDat=" + szulDat
+				+ ", neme=" + neme + ", allampKod=" + allampKod + ", allampDekod=" + allampDekod + ", okmLista="
+				+ okmLista + "]";
+	}
+
+
+
+	private static final long serialVersionUID = 4L;
     
     private String visNev;
     
