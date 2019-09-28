@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+
 /**
  *
  * @author Ruzsinak
@@ -18,6 +19,7 @@ public class SzemelyDTO implements Serializable{
     /**
      * @return the visNev
      */
+	
     public String getVisNev() {
         return visNev;
     }
@@ -140,6 +142,7 @@ public class SzemelyDTO implements Serializable{
 
 	private static final long serialVersionUID = 4L;
     
+	
     private String visNev;
     
     private String szulNev;

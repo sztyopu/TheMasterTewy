@@ -21,7 +21,7 @@ public class IdomSoftApplication implements CommandLineRunner {
 	@Override
     public void run(String[] args) throws IOException {
 		try {
-			//create ObjectMapper instance
+//			create ObjectMapper instance
 	        ObjectMapper objectMapper = new ObjectMapper();
 
 	        //read json file and convert to szemelyDto object
@@ -34,6 +34,14 @@ public class IdomSoftApplication implements CommandLineRunner {
 //	        Kiprobalom megtudom-e hivni a SzemelyService-t
 	        SzemelyService szemelyService = new SzemelyService();
 	        System.out.println(szemelyService.osszeg(szemelyDTO));
+	        
+	        szemelyService.szemelyServiceValidacio(szemelyDTO);
+	        
+//	        fuggveny teszt
+//	        System.out.println(szemelyService.isStringOnlyAlphabet("Varga-Csetneki Éva"));
+	        System.out.println(szemelyService.isStringBiggerTwoWord("Varga Dr."));
+	        
+	        
 	        
 		} catch (Exception e) {
 			 System.out.println(e);
