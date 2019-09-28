@@ -39,7 +39,8 @@ public class IdomSoftApplication implements CommandLineRunner {
 	        
 //	        fuggveny teszt
 //	        System.out.println(szemelyService.isStringOnlyAlphabet("Varga-Csetneki Éva"));
-	        System.out.println(szemelyService.isStringBiggerTwoWord("Varga Dr."));
+	        System.out.println(szemelyService.isStringBiggerTwoWord("Dr. Varga Dr."));
+//	        System.out.println(szemelyService.gender("Ferfi"));
 	        
 	        
 	        
