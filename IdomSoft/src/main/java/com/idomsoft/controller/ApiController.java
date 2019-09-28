@@ -21,10 +21,10 @@ public class ApiController {
 	OkmanyService okmanyServiece;
 
 	@RequestMapping(value="/szemely", method = RequestMethod.POST)
-	public String szemelyValidation(@RequestParam("szemely") SzemelyDTO szemely) {
+	public String szemelyValidation(@RequestParam("szemely") SzemelyDTO szemelyDTO) {
 		// itt meghívhatod a személy szervízben megírt validációs metódust, ami visszad
 		// valamilyen értéket
-		szemelyServiece.osszeg(null);
+		szemelyServiece.szemelyServiceValidacio(szemelyDTO);
 		return "reply message";
 	}
 	
@@ -32,7 +32,7 @@ public class ApiController {
 	public String okmanyValidation(@RequestParam("okmany") OkmanyDTO okmany) {
 		// itt meghívhatod a személy szervízben megírt validációs metódust, ami visszad
 		// valamilyen értéket
-		szemelyServiece.osszeg(null);
+	//	szemelyServiece.osszeg(null);
 		return "reply message";
 	}
 

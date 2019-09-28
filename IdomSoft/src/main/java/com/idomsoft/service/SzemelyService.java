@@ -1,5 +1,10 @@
 package com.idomsoft.service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
+
 import org.springframework.stereotype.Service;
 
 import com.idomsoft.DTO.SzemelyDTO;
@@ -7,26 +12,49 @@ import com.idomsoft.DTO.SzemelyDTO;
 @Service
 public class SzemelyService  {
 	
-	SzemelyDTO szemelyDTO = new SzemelyDTO();
-	// ez egy proba fuggveny, hogy meglehet-e hivni a SzemelyService-t
-	public String osszeg(SzemelyDTO szemelyDTO) {		
-	return szemelyDTO.getVisNev() + ' ' +szemelyDTO.getAllampKod();
-	}
-	
 //	itt kezdodik a validacio
-	public String szemelyServiceValidacio(SzemelyDTO szemelyDTO) {
+	public ArrayList<String> szemelyServiceValidacio(SzemelyDTO szemelyDTO) {
+		ArrayList<String> err = new ArrayList<String>();
+	  //  cars.add("Volvo");
+	 
 //	megvizsgaljuk a viselt nevet	
-	//if ( szemelyDTO.getVisNev() != null && szemelyDTO.getVisNev().length()<=80) {}
-	if (isStringOnlyAlphabet(szemelyDTO.getVisNev()) == false) {
-		
-		System.out.println("Viseltnév: " +szemelyDTO.getVisNev()+" hibás!");
+	if (strNev(szemelyDTO.getVisNev()) == false) {
+		err.add("visNev: " + szemelyDTO.getVisNev() +" - hibás!");
 	}
 	
-	return "";
+//	megvizsgaljuk a szuletesi nevet	
+	if (strNev(szemelyDTO.getSzulNev()) == false) {
+		err.add("szulNev: " + szemelyDTO.getSzulNev() +" - hibás!");
 	}
+	
+//	megvizsgaljuk a annya nevet	
+	if (strNev(szemelyDTO.getaNev()) == false) {
+		err.add("aNev: " + szemelyDTO.getaNev() +" - hibás!");
+	}
+	
+//	megvizsgaljuk a szuletesi datumot
+	if (vizsgalSzulDat(szemelyDTO.getSzulDat()) == false) {
+		err.add("SzulDat: " + szemelyDTO.getSzulDat() +" - hibás!");
+	}
+	
+//	megvizsgaljuk a felhasznalo nemet	
+	if (felNeme(szemelyDTO.getNeme()) == false) {
+		err.add("neme: " + szemelyDTO.getNeme() +" - hibás!");
+	}
+	
+	
+	return err;
+	}
+	
+	//Nevek tesztelése
+	public static boolean  strNev(String str) {
+		return (strValosNev(str) && strLegalabbKetNev(str));
+	}
+	
+	
 	
 //	Fugveny teszteli a Stringet: csak magyar ABC plussz Ä, pont, perjel, aposztróf, kötőjel és szóköz max 80
-    public static boolean isStringOnlyAlphabet(String str) { 
+    public static boolean strValosNev(String str) { 
         return ((str != null) 
                 && (!str.equals("")) 
                 && (!str.equals(" ") 
@@ -35,12 +63,9 @@ public class SzemelyService  {
     } 
     
 //  Fugveny teszteli a Stringet: Legalább két névelemnek kell lennie, a kezdő vagy befejező Dr.-on kívül  
-    public static boolean isStringBiggerTwoWord(String str) { 
+    public static boolean strLegalabbKetNev(String str) { 
     	boolean bool = false;
     	String[] arrOfStr = str.split(" ", 0); 
-    	System.out.println(arrOfStr.length);
-    	System.out.println(arrOfStr[0]);
-    	System.out.println(arrOfStr[arrOfStr.length-1]);
     	if (arrOfStr.length > 2) {
     		bool = true;
     	}else if(arrOfStr.length == 2 && !arrOfStr[0].equals("Dr.") && !arrOfStr[arrOfStr.length-1].equals("Dr.")){
@@ -52,7 +77,18 @@ public class SzemelyService  {
     }
     
 //  Fugveny teszteli a Stringet: vagy "F" vagy "N" leht
-    public static boolean gender(String str) { 
+    public static boolean felNeme(String str) { 
         return (str.equals("N") || str.equals("F")); 
     }
+    
+    
+//  Fuggveny teszteli a szulDat-t es true-t add ha 120 és 18 kozott van
+    public static boolean vizsgalSzulDat(Date dateToConvert) {
+        LocalDate szulDat = dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    	LocalDate maiDatum = LocalDate.now();
+ //   	System.out.println(maiDatum.compareTo(date)); 	
+    	return (maiDatum.compareTo(szulDat) >=18 && maiDatum.compareTo(szulDat) <=120 );
+    }
+
+    
 }

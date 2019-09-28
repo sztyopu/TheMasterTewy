@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.idomsoft.DTO.Kod21Allampolg;
 import com.idomsoft.DTO.SzemelyDTO;
 import com.idomsoft.service.SzemelyService;
 
@@ -24,24 +25,24 @@ public class IdomSoftApplication implements CommandLineRunner {
 //			create ObjectMapper instance
 	        ObjectMapper objectMapper = new ObjectMapper();
 
-	        //read json file and convert to szemelyDto object
+	        //json fajl beolvasasa es szemelyDto objektumba konvertalas
 	        SzemelyDTO szemelyDTO = objectMapper.readValue(new File("Szemely_1.json"), SzemelyDTO.class);
-
-//	        print szemelyDTO details
-//	        String nev =szemelyDTO.getVisNev();
-//	        System.out.println(nev);
-
-//	        Kiprobalom megtudom-e hivni a SzemelyService-t
-	        SzemelyService szemelyService = new SzemelyService();
-	        System.out.println(szemelyService.osszeg(szemelyDTO));
+	                
+       
+	        //read json file and convert to kod21Allampolg object
+		    //   Kod21Allampolg[]  kod21Allampolg = objectMapper.readValue(new File("src/main/resources/static/JSON/kodszotar21_allampolg.json"), Kod21Allampolg[].class);
+			   
+		    //   for (Kod21Allampolg kodAllampolg : kod21Allampolg) {
+	        //      System.out.println(kodAllampolg);
+	        //    }
 	        
-	        szemelyService.szemelyServiceValidacio(szemelyDTO);
+//		        print kod21Allampolg details
+//		        String nev =kod21Allampolg.getAllampolgarsag();
+//		        System.out.println(kod21Allampolg);
 	        
-//	        fuggveny teszt
-//	        System.out.println(szemelyService.isStringOnlyAlphabet("Varga-Csetneki Éva"));
-	        System.out.println(szemelyService.isStringBiggerTwoWord("Dr. Varga Dr."));
-//	        System.out.println(szemelyService.gender("Ferfi"));
-	        
+//	       FUGGVENY TESZT:
+		    SzemelyService szemelyService = new SzemelyService();
+	        System.out.println(szemelyService.szemelyServiceValidacio(szemelyDTO));
 	        
 	        
 		} catch (Exception e) {
