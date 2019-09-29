@@ -1,6 +1,4 @@
-{
- "dictname": "kodszotar21_allampolg",
- "rows": [
+[
   {
    "kod": "CAN",
    "allampolgarsag": "KANADA ÁLLAMPOLGÁRA",
@@ -1852,4 +1850,3 @@
    "sis1_orsz_hun": "KAMERUN"
   }
  ]
-}

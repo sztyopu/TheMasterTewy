@@ -74,9 +74,11 @@ public class OkmanyDTO implements Serializable{
      * @return the ervenyes
      */
     public boolean isErvenyes() {
-        return ervenyes;
-    }
-
+    	    return ervenyes;   
+    }  
+    
+    
+    
     /**
      * @param ervenyes the ervenyes to set
      */

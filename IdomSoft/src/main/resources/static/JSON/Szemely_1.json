@@ -1,0 +1,17 @@
+
+  {
+    "visNev": "Dr. Eva",
+    "szulNev": "Oroszi Beata",
+    "aNev": "Nagy Katalin4",
+    "szulDat": "1988-10-27",
+    "neme": "n",
+    "allampKod": "CAN",
+    "allampDekod":"",
+    "okmLista":{
+    	  "okmTipus":1,
+          "okmanySzam":"123456AB",
+          "lejarDat":"2020-10-27",
+          "ervenyes":""
+    }
+    
+  }
