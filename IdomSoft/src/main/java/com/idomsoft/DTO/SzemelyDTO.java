@@ -134,8 +134,7 @@ public class SzemelyDTO implements Serializable{
 	@Override
 	public String toString() {
 		return "SzemelyDTO [visNev=" + visNev + ", szulNev=" + szulNev + ", aNev=" + aNev + ", szulDat=" + szulDat
-				+ ", neme=" + neme + ", allampKod=" + allampKod + ", allampDekod=" + allampDekod + ", okmLista="
-				+ okmLista + "]";
+				+ ", neme=" + neme + ", allampKod=" + allampKod + ", allampDekod=" + allampDekod + "]";
 	}
 
 
