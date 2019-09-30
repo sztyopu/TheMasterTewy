@@ -8,43 +8,45 @@ import java.util.Date;
 import org.springframework.stereotype.Service;
 
 import com.idomsoft.DTO.SzemelyDTO;
+import com.idomsoft.repository.ReadJson;
 
 @Service
 public class SzemelyService  {
 	
 //	itt kezdodik a validacio
 	public ArrayList<String> szemelyServiceValidacio(SzemelyDTO szemelyDTO) {
-		ArrayList<String> err = new ArrayList<String>();
-	  //  cars.add("Volvo");
+	    //A hibakat tartalmazo lista
+		ArrayList<String> errorList = new ArrayList<String>();
 	 
-//	megvizsgaljuk a viselt nevet	
-	if (strNev(szemelyDTO.getVisNev()) == false) {
-		err.add("visNev: " + szemelyDTO.getVisNev() +" - hibás!");
+//		megvizsgaljuk a viselt nevet	
+		if (strNev(szemelyDTO.getVisNev()) == false) {
+			errorList.add("visNev: " + szemelyDTO.getVisNev() +" - hibás!");
+		}
+	
+//		megvizsgaljuk a szuletesi nevet	
+		if (strNev(szemelyDTO.getSzulNev()) == false) {
+			errorList.add("szulNev: " + szemelyDTO.getSzulNev() +" - hibás!");
+		}
+	
+//		megvizsgaljuk a annya nevet	
+		if (strNev(szemelyDTO.getaNev()) == false) {
+			errorList.add("aNev: " + szemelyDTO.getaNev() +" - hibás!");
+		}
+	
+//		megvizsgaljuk a szuletesi datumot
+		if (vizsgalSzulDat(szemelyDTO.getSzulDat()) == false) {
+			errorList.add("SzulDat: " + szemelyDTO.getSzulDat() +" - hibás!");
+		}
+	
+//		megvizsgaljuk a felhasznalo nemet	
+		if (strFN(szemelyDTO.getNeme()) == false) {
+			errorList.add("neme: " + szemelyDTO.getNeme() +" - hibás!");
+		}
+		
+	return errorList;
 	}
 	
-//	megvizsgaljuk a szuletesi nevet	
-	if (strNev(szemelyDTO.getSzulNev()) == false) {
-		err.add("szulNev: " + szemelyDTO.getSzulNev() +" - hibás!");
-	}
 	
-//	megvizsgaljuk a annya nevet	
-	if (strNev(szemelyDTO.getaNev()) == false) {
-		err.add("aNev: " + szemelyDTO.getaNev() +" - hibás!");
-	}
-	
-//	megvizsgaljuk a szuletesi datumot
-	if (vizsgalSzulDat(szemelyDTO.getSzulDat()) == false) {
-		err.add("SzulDat: " + szemelyDTO.getSzulDat() +" - hibás!");
-	}
-	
-//	megvizsgaljuk a felhasznalo nemet	
-	if (felNeme(szemelyDTO.getNeme()) == false) {
-		err.add("neme: " + szemelyDTO.getNeme() +" - hibás!");
-	}
-	
-	
-	return err;
-	}
 	
 	//Nevek tesztelése
 	public static boolean  strNev(String str) {
@@ -76,8 +78,8 @@ public class SzemelyService  {
      return bool; 
     }
     
-//  Fugveny teszteli a Stringet: vagy "F" vagy "N" leht
-    public static boolean felNeme(String str) { 
+//  Fugveny teszteli a Stringet: vagy "F"(ferfi) vagy "N"(no) lehet
+    public static boolean strFN(String str) { 
         return (str.equals("N") || str.equals("F")); 
     }
     
@@ -86,9 +88,13 @@ public class SzemelyService  {
     public static boolean vizsgalSzulDat(Date dateToConvert) {
         LocalDate szulDat = dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     	LocalDate maiDatum = LocalDate.now();
- //   	System.out.println(maiDatum.compareTo(date)); 	
     	return (maiDatum.compareTo(szulDat) >=18 && maiDatum.compareTo(szulDat) <=120 );
     }
-
+    
+//	Fuggveny teszteli a allampKod-ot
+//    public static boolean tesztAllampKod(String str) {
+//    	ReadJson readJson = new ReadJson(;)
+//    	return (str.length() == 3; && readJson.);
+//    }
     
 }

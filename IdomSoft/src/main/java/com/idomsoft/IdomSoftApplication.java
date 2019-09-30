@@ -25,12 +25,6 @@ public class IdomSoftApplication  {
 		SpringApplication.run(IdomSoftApplication.class, args);
 		
 		
-//		SzemelyService szemelyService = new SzemelyService();
-//		szemelyService.strNev("Varga Éva");
-		
-		
-//		ReadJson readJson = new ReadJson();
-//		readJson.teszt();
 	}
 
 	
