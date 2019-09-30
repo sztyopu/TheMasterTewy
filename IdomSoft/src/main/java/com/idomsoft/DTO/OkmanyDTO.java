@@ -6,6 +6,7 @@
 package com.idomsoft.DTO;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -76,16 +77,27 @@ public class OkmanyDTO implements Serializable{
     public boolean isErvenyes() {
     	    return ervenyes;   
     }  
-    
-    
-    
+     
     /**
      * @param ervenyes the ervenyes to set
      */
     public void setErvenyes(boolean ervenyes) {
         this.ervenyes = ervenyes;
     }
-    private static final long serialVersionUID = 1L;
+    
+    
+    
+    
+    @Override
+	public String toString() {
+		return "OkmanyDTO [okmTipus=" + okmTipus + ", okmanySzam=" + okmanySzam + ", okmanyKep="
+				+ Arrays.toString(okmanyKep) + ", lejarDat=" + lejarDat + ", ervenyes=" + ervenyes + "]";
+	}
+
+
+
+
+	private static final long serialVersionUID = 1L;
     
     private String okmTipus;
     

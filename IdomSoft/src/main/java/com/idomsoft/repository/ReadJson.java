@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.boot.CommandLineRunner;
@@ -31,9 +32,11 @@ public class ReadJson implements CommandLineRunner {
 	        SzemelyDTO szemelyDTO = objectMapper.readValue(new File("src/main/resources/static/JSON/Szemely_1.json"), SzemelyDTO.class);     	  
 	        System.out.println(szemelyDTO);
 //	        OkmanyDTO okmany = new OkmanyDTO();
-//	        System.out.println(okmany.getLejarDat());
-	           
-//	        FUGGVENY TESZT:
+	        System.out.println("okmany: " + szemelyDTO.getOkmLista());
+//	        System.out.println("okmany: " + szemelyDTO.getOkmLista().get(0).getOkmanySzam() + " : "
+//					+ szemelyDTO.getOkmLista().get(0).getOkmTipus());   
+
+	        //	        FUGGVENY TESZT:
 		    SzemelyService szemelyService = new SzemelyService();
 	        System.out.println(szemelyService.szemelyServiceValidacio(szemelyDTO));
 	        	        
@@ -66,16 +69,21 @@ public class ReadJson implements CommandLineRunner {
 //        		     .collect(Collectors.toList());
         	
         	//Stringlistába rakja az "allampolgarsag"és a "kod" valtozok ertekeit
-            List<String> collect1 = allampolgarsagList.stream().map(x -> x.getAllampolgarsag()).collect(Collectors.toList());
-        	List<String> collect2 = allampolgarsagList.stream().map(x -> x.getKod()).collect(Collectors.toList());
+//            List<String> collect1 = allampolgarsagList.stream().map(x -> x.getAllampolgarsag()).collect(Collectors.toList());
+//        	List<String> collect2 = allampolgarsagList.stream().map(x -> x.getKod()).collect(Collectors.toList());
         	
         	//HashMab-be rakom a két String listát a konnyu kereshetoseg veget (ahol a kod-key, allampolgarsag-value)
-            HashMap<String,String> hmap = new HashMap<>();
-            for (int i = 0; i < collect1.size();  i++) {
-            	hmap.put(collect2.get(i),collect1.get(i));
-            	}
-            System.out.println(hmap);
+//            HashMap<String,String> hmap = new HashMap<>();
+//            for (int i = 0; i < collect1.size();  i++) {
+//            	hmap.put(collect2.get(i),collect1.get(i));
+//            	}
+//            System.out.println(hmap);
             
+        	
+        	//Tewy
+        	Map<String, String> hasMap = allampolgarsagList.stream()
+        			.collect(Collectors.toMap(Allampolgarsag::getKod, Allampolgarsag::getAllampolgarsag));
+        	System.out.println(hasMap.get("HUN"));
       
         } catch (Exception e) {
         	System.out.println(e);

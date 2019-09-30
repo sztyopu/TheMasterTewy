@@ -118,14 +118,15 @@ public class SzemelyDTO implements Serializable{
     /**
      * @return the okmLista
      */
-    public OkmanyDTO getOkmLista() {
+	public ArrayList<OkmanyDTO> getOkmLista() {
 		return okmLista;
 	}
+
 
     /**
      * @param okmLista the okmLista to set
      */
-	public void setOkmLista(OkmanyDTO okmLista) {
+	public void setOkmLista(ArrayList<OkmanyDTO> okmLista) {
 		this.okmLista = okmLista;
 	}
 
@@ -136,6 +137,11 @@ public class SzemelyDTO implements Serializable{
 		return "SzemelyDTO [visNev=" + visNev + ", szulNev=" + szulNev + ", aNev=" + aNev + ", szulDat=" + szulDat
 				+ ", neme=" + neme + ", allampKod=" + allampKod + ", allampDekod=" + allampDekod + "]";
 	}
+
+
+
+
+
 
 
 
@@ -156,6 +162,7 @@ public class SzemelyDTO implements Serializable{
     
     private String allampDekod;
     
-    private OkmanyDTO okmLista;
+    private ArrayList<OkmanyDTO> okmLista;
+
     
 }
