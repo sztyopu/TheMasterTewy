@@ -130,19 +130,12 @@ public class SzemelyDTO implements Serializable{
 		this.okmLista = okmLista;
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		return "SzemelyDTO [visNev=" + visNev + ", szulNev=" + szulNev + ", aNev=" + aNev + ", szulDat=" + szulDat
-				+ ", neme=" + neme + ", allampKod=" + allampKod + ", allampDekod=" + allampDekod + "]";
+				+ ", neme=" + neme + ", allampKod=" + allampKod + ", allampDekod=" + allampDekod + ", okmLista="
+				+ okmLista + "]";
 	}
-
-
-
-
-
-
 
 
 	private static final long serialVersionUID = 4L;

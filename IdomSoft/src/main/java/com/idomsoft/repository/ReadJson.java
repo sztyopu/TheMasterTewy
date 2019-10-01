@@ -1,6 +1,7 @@
 package com.idomsoft.repository;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.idomsoft.DTO.Allampolgarsag;
+import com.idomsoft.DTO.Okmanytipus;
 
 @Component
 public class ReadJson  {
@@ -23,7 +25,8 @@ public class ReadJson  {
             ObjectMapper objectMapper2 = new ObjectMapper();
                  	
 //          read json file (kodszotar21_allampolg.json) and convert to List      	
-        	List<Allampolgarsag> allampolgarsagList = objectMapper2.readValue(new File("src/main/resources/static/JSON/kodszotar21_allampolg.json"), new TypeReference<List<Allampolgarsag>>(){});
+        	List<Allampolgarsag> allampolgarsagList = objectMapper2.readValue(
+        			new File("src/main/resources/static/JSON/kodszotar21_allampolg.json"), new TypeReference<List<Allampolgarsag>>(){});
                   	
 //			creat Map(kod,allampolgarsag) 
         	hasMap = allampolgarsagList.stream()
@@ -33,6 +36,24 @@ public class ReadJson  {
         	System.out.println(e);
           }
         return hasMap;
+	}	
+	/*================================================kodszotar46_okmanytipus.json================================================*/		
+	public List<String> readJson46(){
+		List<String> okmTipusKodList = new ArrayList<String>();
+        try {
+//    		create ObjectMapper instance
+            ObjectMapper objectMapper1 = new ObjectMapper();
+                 	
+//          read json file (kodszotar46_okmanytipus.json) and convert to List      	
+        	List<Okmanytipus> okmanyTipusList = objectMapper1.readValue(
+        			new File("src/main/resources/static/JSON/kodszotar46_okmanytipus.json"), new TypeReference<List<Okmanytipus>>(){});
+            
+        	okmTipusKodList = okmanyTipusList.stream().map(x -> x.getKod()).collect(Collectors.toList());
+        	      
+        } catch (Exception e) {
+        	System.out.println(e);
+          }
+        return okmTipusKodList;
 	}	
 
 	

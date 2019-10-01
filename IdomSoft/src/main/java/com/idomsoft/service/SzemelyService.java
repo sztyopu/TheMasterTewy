@@ -68,9 +68,9 @@ public class SzemelyService  {
     public static boolean strValosNev(String str) { 
         return ((str != null) 
                 && (!str.equals("")) 
-                && (!str.equals(" ") 
-                && (str.matches("^[a-zA-ZÁáÉéÍíÓóÖöŐőÚúÜüŰűÄ ///./'/-]*$")))
-        		&& str.length()<81); 
+                && (!str.equals(" "))
+                && (str.matches("^[a-zA-ZÁáÉéÍíÓóÖöŐőÚúÜüŰűÄ ///./'/-]*$"))
+        		&& (str.length()<81)); 
     } 
     
 //  Fugveny teszteli a Stringet: Legalább két névelemnek kell lennie, a kezdő vagy befejező Dr.-on kívül  
@@ -104,11 +104,11 @@ public class SzemelyService  {
     public boolean tesztAllampKod(String str) {    	
     	ReadJson readJson = new ReadJson();
     	Map<String, String> hasMap = readJson.readJson21(); 	
-    	boolean bool = (hasMap.containsKey(str)) ? true :  false;
+    	boolean bool = (str.length() == 3 && hasMap.containsKey(str)) ? true :  false;
      	return bool;
     }
     
-    //Fuggveny teszteli a allampKod-ot
+    //Fuggveny visszadja az allampolgDekod-t
     public String allampolgDekod(String str) {    	
     	ReadJson readJson = new ReadJson();
     	Map<String, String> hasMap = readJson.readJson21(); 	

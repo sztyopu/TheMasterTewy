@@ -8,20 +8,20 @@
 	"allampDekod": "",
 	"okmLista": [{
 		"okmTipus": 1,
-		"okmanySzam": "123456AB",
-		"lejarDat": "2020-10-27",
+		"okmanySzam": "111111AA",
+		"lejarDat": "2211-11-11",
 		"ervenyes": ""
 	},
 	{
-		"okmTipus": 2,
-		"okmanySzam": "AB654321",
-		"lejarDat": "2020-10-27",
+		"okmTipus": 11,
+		"okmanySzam": "BB2222222",
+		"lejarDat": "2022-12-22",
 		"ervenyes": ""
 	},
 	{
-		"okmTipus": 2,
-		"okmanySzam": "AB654321",
-		"lejarDat": "2010-10-27",
+		"okmTipus": 1,
+		"okmanySzam": "3333333333",
+		"lejarDat": "2013-03-33",
 		"ervenyes": ""
 	}]
 }
