@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
@@ -12,41 +13,49 @@ import com.idomsoft.repository.ReadJson;
 
 @Service
 public class SzemelyService  {
-	
+
 //	itt kezdodik a validacio
 	public ArrayList<String> szemelyServiceValidacio(SzemelyDTO szemelyDTO) {
+		
 	    //A hibakat tartalmazo lista
 		ArrayList<String> errorList = new ArrayList<String>();
 	 
-//		megvizsgaljuk a viselt nevet	
+		//megvizsgaljuk a viselt nevet	
 		if (strNev(szemelyDTO.getVisNev()) == false) {
 			errorList.add("visNev: " + szemelyDTO.getVisNev() +" - hibás!");
 		}
 	
-//		megvizsgaljuk a szuletesi nevet	
+		//megvizsgaljuk a szuletesi nevet	
 		if (strNev(szemelyDTO.getSzulNev()) == false) {
 			errorList.add("szulNev: " + szemelyDTO.getSzulNev() +" - hibás!");
 		}
 	
-//		megvizsgaljuk a annya nevet	
+		//megvizsgaljuk az annya nevet	
 		if (strNev(szemelyDTO.getaNev()) == false) {
 			errorList.add("aNev: " + szemelyDTO.getaNev() +" - hibás!");
 		}
 	
-//		megvizsgaljuk a szuletesi datumot
+		//megvizsgaljuk a szuletesi datumot
 		if (vizsgalSzulDat(szemelyDTO.getSzulDat()) == false) {
 			errorList.add("SzulDat: " + szemelyDTO.getSzulDat() +" - hibás!");
 		}
 	
-//		megvizsgaljuk a felhasznalo nemet	
+		//megvizsgaljuk a felhasznalo nemet	
 		if (strFN(szemelyDTO.getNeme()) == false) {
 			errorList.add("neme: " + szemelyDTO.getNeme() +" - hibás!");
 		}
 		
+		//megvizsgaljuk a felhasznalo allamkodjat	
+		if (tesztAllampKod(szemelyDTO.getAllampKod()) == false) {
+			errorList.add("allamKod: " + szemelyDTO.getAllampKod() +" - hibás!");
+		}else {
+			
+			szemelyDTO.setAllampDekod(allampolgDekod(szemelyDTO.getAllampKod()));
+		}
+		
 	return errorList;
 	}
-	
-	
+
 	
 	//Nevek tesztelése
 	public static boolean  strNev(String str) {
@@ -90,11 +99,21 @@ public class SzemelyService  {
     	LocalDate maiDatum = LocalDate.now();
     	return (maiDatum.compareTo(szulDat) >=18 && maiDatum.compareTo(szulDat) <=120 );
     }
+        
+    //Fuggveny teszteli a allampKod-ot
+    public boolean tesztAllampKod(String str) {    	
+    	ReadJson readJson = new ReadJson();
+    	Map<String, String> hasMap = readJson.readJson21(); 	
+    	boolean bool = (hasMap.containsKey(str)) ? true :  false;
+     	return bool;
+    }
     
-//	Fuggveny teszteli a allampKod-ot
-//    public static boolean tesztAllampKod(String str) {
-//    	ReadJson readJson = new ReadJson(;)
-//    	return (str.length() == 3; && readJson.);
-//    }
+    //Fuggveny teszteli a allampKod-ot
+    public String allampolgDekod(String str) {    	
+    	ReadJson readJson = new ReadJson();
+    	Map<String, String> hasMap = readJson.readJson21(); 	
+    	String result = hasMap.get(str);
+     	return result;
+    }
     
 }
