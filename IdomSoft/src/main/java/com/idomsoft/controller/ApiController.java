@@ -1,5 +1,6 @@
 package com.idomsoft.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.idomsoft.DTO.OkmanyDTO;
+import com.idomsoft.DTO.OkmanyServiceResp;
 import com.idomsoft.DTO.SzemelyDTO;
 import com.idomsoft.DTO.SzemelyServiceResp;
 import com.idomsoft.service.OkmanyService;
@@ -25,10 +27,10 @@ public class ApiController {
 
     @RequestMapping(value = "/szemely", method = RequestMethod.POST)
     public SzemelyServiceResp szemelyValidation(@RequestBody SzemelyDTO szemelyDTO) {
-        // itt meghívhatod a személy szervízben megírt validációs metódust, ami visszad
-        // valamilyen értéket
+        //szemelyServiceResp egyszerre tudja tárolni a módosított szemelyDTO-t és a hiba listát
     	SzemelyServiceResp szemelyServiceResp = new SzemelyServiceResp();
-    	 
+    	
+    	// itt meghíjuk a SemelyService-ben megírt validációs metódust, ami visszad egy hiba listát 
     	List<String> errorList = szemelyServiece.szemelyServiceValidacio(szemelyDTO);
         
     	szemelyServiceResp.setLista(errorList);
@@ -37,10 +39,16 @@ public class ApiController {
     }
 
     @RequestMapping(value = "/okmany", method = RequestMethod.POST)
-    public String okmanyValidation(@RequestBody OkmanyDTO okmany) {
-        // itt meghívhatod a személy szervízben megírt validációs metódust, ami visszad
-        // valamilyen értéket
-        //	szemelyServiece.osszeg(null);
-        return "reply message";
+    public OkmanyServiceResp okmanyValidation(@RequestBody ArrayList<OkmanyDTO> okmLista) {
+    	 //okmanyServiceResp egyszerre tudja tárolni a módosított okmLista-t és a hiba listát
+    	OkmanyServiceResp okmanyServiceResp = new OkmanyServiceResp();
+    	
+    	// itt meghíjuk a OkmanyService-ben megírt validációs metódust, ami visszad egy hiba listát 
+    	ArrayList<String> errorsOkmanyLista = okmanyServiece.okmanyServiceValidacio(okmLista);
+    	
+    	okmanyServiceResp.setErrorsOkmanyLista(errorsOkmanyLista);
+    	okmanyServiceResp.setOkmLista(okmLista);
+        
+        return okmanyServiceResp;
     }
 }
