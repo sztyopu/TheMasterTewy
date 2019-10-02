@@ -33,16 +33,22 @@ public class ApiController {
     	
     	// itt meghíjuk a SemelyService-ben megírt validációs metódust, ami visszad egy hiba listát 
     	List<String> errorList = szemelyServiece.szemelyServiceValidacio(szemelyDTO);
-        // 2. microservice meghivása
+        
+    	// 2. microservice meghivása
     	final String uri = "http://localhost:8080/okmany";
     	RestTemplate restTemplate = new RestTemplate();
-    	OkmanyServiceResp okmanyServiceResp = restTemplate.getForObject(uri, OkmanyServiceResp.class);
+    	OkmanyServiceResp okmanyServiceResp = restTemplate.postForObject(uri, szemelyDTO, OkmanyServiceResp.class);    	  	
+    	szemelyDTO.setOkmLista(okmanyServiceResp.getOkmLista());
     	
-    	szemelyServiceResp.setLista(errorList);
-    	szemelyServiceResp.setSzemely(szemelyDTO);
+    	//feltöltöm a válasz osztályt
+    	szemelyServiceResp.setSzemelyDTO(szemelyDTO);;
+    	szemelyServiceResp.setErrorsSzemelyLista(errorList);
+    	szemelyServiceResp.setErrorsOkmanyLista(okmanyServiceResp.getErrorsOkmanyLista());
     	return szemelyServiceResp;
     }
 
+    
+    
     @RequestMapping(value = "/okmany", method = RequestMethod.POST)
     public OkmanyServiceResp okmanyValidation(@RequestBody SzemelyDTO szemelyDTO) {
     	 //okmanyServiceResp egyszerre tudja tárolni a módosított okmLista-t és a hiba listát

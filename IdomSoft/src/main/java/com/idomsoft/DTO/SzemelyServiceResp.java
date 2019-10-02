@@ -1,27 +1,42 @@
 package com.idomsoft.DTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SzemelyServiceResp {
 
-	private SzemelyDTO szemely;
-	private List<String> lista;
-	public SzemelyDTO getSzemely() {
-		return szemely;
+	private SzemelyDTO szemelyDTO;
+	private List<String> errorsSzemelyLista;
+	private ArrayList<String> errorsOkmanyLista;
+	
+	
+	public SzemelyDTO getSzemelyDTO() {
+		return szemelyDTO;
 	}
-	public List<String> getLista() {
-		return lista;
+	public List<String> getErrorsSzemelyLista() {
+		return errorsSzemelyLista;
 	}
-	public void setSzemely(SzemelyDTO szemely) {
-		this.szemely = szemely;
+	public ArrayList<String> getErrorsOkmanyLista() {
+		return errorsOkmanyLista;
 	}
-	public void setLista(List<String> lista) {
-		this.lista = lista;
+	public void setSzemelyDTO(SzemelyDTO szemelyDTO) {
+		this.szemelyDTO = szemelyDTO;
+	}
+	public void setErrorsSzemelyLista(List<String> errorsSzemelyLista) {
+		this.errorsSzemelyLista = errorsSzemelyLista;
+	}
+	public void setErrorsOkmanyLista(ArrayList<String> errorsOkmanyLista) {
+		this.errorsOkmanyLista = errorsOkmanyLista;
 	}
 	@Override
 	public String toString() {
-		return "SzemelyServiceResp [szemely=" + szemely + ", lista=" + lista + "]";
+		return "SzemelyServiceResp [szemelyDTO=" + szemelyDTO + ", errorsSzemelyLista=" + errorsSzemelyLista
+				+ ", errorsOkmanyLista=" + errorsOkmanyLista + "]";
 	}
+	
+	
+	
+
 	
 	
 	

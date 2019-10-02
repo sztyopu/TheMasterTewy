@@ -29,10 +29,10 @@ public class ReadJson2 implements CommandLineRunner  {
 
  //         json fajl beolvasasa es szemelyDto objektumba konvertalasa
 	        SzemelyDTO szemelyDTO = objectMapper.readValue(new File("src/main/resources/static/JSON/Szemely_1.json"), SzemelyDTO.class);     	  
-	        System.out.println(szemelyDTO);
-	        System.out.println();
+//	        System.out.println(szemelyDTO);
+//	        System.out.println();
 //	        OkmanyDTO okmanyDTO = new OkmanyDTO();
-	        System.out.println(szemelyDTO.getOkmLista());
+//	        System.out.println(szemelyDTO.getOkmLista());
 //	        System.out.println("okmany: " + szemelyDTO.getOkmLista().get + " : "+ szemelyDTO.getOkmLista().getOkmTipus());
 
 //	        FUGGVENY TESZT:
@@ -44,10 +44,10 @@ public class ReadJson2 implements CommandLineRunner  {
 //	        readJson.readJson46();
 	        
 	        OkmanyService okmanyService = new OkmanyService();
-	        System.out.println();
-	        System.out.println("Hiba lista: "+okmanyService.okmanyServiceValidacio(szemelyDTO.getOkmLista()));
-	        System.out.println();
-	        System.out.println("Uj OkmLista: "+szemelyDTO.getOkmLista());
+//	        System.out.println();
+//	        System.out.println("Hiba lista: "+okmanyService.okmanyServiceValidacio(szemelyDTO.getOkmLista()));
+//	        System.out.println();
+//	        System.out.println("Uj OkmLista: "+szemelyDTO.getOkmLista());
 	        
 
 		} catch (Exception e) {
