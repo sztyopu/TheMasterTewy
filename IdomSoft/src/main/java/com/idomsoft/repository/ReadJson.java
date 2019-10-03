@@ -21,14 +21,12 @@ public class ReadJson  {
 	public Map<String, String>  readJson21(){
 		Map<String, String> hasMap = new HashMap();
         try {
-//    		create ObjectMapper instance
+
             ObjectMapper objectMapper2 = new ObjectMapper();
-                 	
-//          read json file (kodszotar21_allampolg.json) and convert to List      	
+                 	   	
         	List<Allampolgarsag> allampolgarsagList = objectMapper2.readValue(
         			new File("src/main/resources/static/JSON/kodszotar21_allampolg.json"), new TypeReference<List<Allampolgarsag>>(){});
-                  	
-//			creat Map(kod,allampolgarsag) 
+                  	 
         	hasMap = allampolgarsagList.stream()
         			.collect(Collectors.toMap(Allampolgarsag::getKod, Allampolgarsag::getAllampolgarsag));
       
@@ -41,10 +39,8 @@ public class ReadJson  {
 	public List<String> readJson46(){
 		List<String> okmTipusKodList = new ArrayList<String>();
         try {
-//    		create ObjectMapper instance
             ObjectMapper objectMapper1 = new ObjectMapper();
-                 	
-//          read json file (kodszotar46_okmanytipus.json) and convert to List      	
+                 	      	
         	List<Okmanytipus> okmanyTipusList = objectMapper1.readValue(
         			new File("src/main/resources/static/JSON/kodszotar46_okmanytipus.json"), new TypeReference<List<Okmanytipus>>(){});
             

@@ -1,5 +1,5 @@
 package com.idomsoft.DTO;
-
+//a kodszotar46_okmanytipus.json beolvasáshoz
 public class Okmanytipus {
 
 	private String kod;

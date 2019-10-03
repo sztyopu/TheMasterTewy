@@ -28,7 +28,7 @@ public class ApiController {
 
     @RequestMapping(value = "/szemely", method = RequestMethod.POST)
     public SzemelyServiceResp szemelyValidation(@RequestBody SzemelyDTO szemelyDTO) {
-        //szemelyServiceResp egyszerre tudja tárolni a módosított szemelyDTO-t és a hiba listát
+        //szemelyServiceResp egyszerre tudja tárolni a módosított szemelyDTO-t és a hiba listákat
     	SzemelyServiceResp szemelyServiceResp = new SzemelyServiceResp();
     	
     	// itt meghíjuk a SemelyService-ben megírt validációs metódust, ami visszad egy hiba listát 

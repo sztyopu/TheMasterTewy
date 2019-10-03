@@ -1,7 +1,6 @@
 package com.idomsoft.DTO;
-
+//a kodszotar21_allampolg.json beolvasáshoz
 public class Allampolgarsag  {
-
 	private String kod;
 	private String allampolgarsag;
 	private String orszag;
