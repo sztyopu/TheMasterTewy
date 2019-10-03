@@ -1,5 +1,8 @@
 package com.idomsoft.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -35,6 +38,13 @@ public class OkmanyService {
 			if (tesztOkmanySzam(okmLista.get(i).getOkmTipus(), okmLista.get(i).getOkmanySzam()) == false) {
 				errorsOkmanyLista.add("okmanySzam["+ (i+1) +"]: " + okmLista.get(i).getOkmanySzam()+ " - hibás");
 			}
+		}
+		
+		//megvizsgaljuk a lejarDat-okat	
+		for (int i=0; i < okmLista.size(); i++ ) {
+			if (tesztDate(okmLista.get(i).getLejarDat()) == false) {
+				errorsOkmanyLista.add("lejarDat["+ (i+1) +"]: " + okmLista.get(i).getLejarDat() + " - hibás");
+		}
 		}
 		
 		//megvizsgaljuk az okmany ervenyesseget 	
@@ -91,6 +101,16 @@ public class OkmanyService {
     	LocalDate maiDatum = LocalDate.now();
     	return (lejarDat.compareTo(maiDatum) >=1);
     }
-
+    //Fuggveny teszteli a lejarDat-ot
+    public boolean tesztDate(Date lejarDat){		
+    
+        if(lejarDat == null){
+			return false;
+        }
+		return true;
+	}
+    
+    
+    
     
 }

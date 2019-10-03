@@ -95,6 +95,7 @@ public class SzemelyService  {
     
 //  Fuggveny teszteli a szulDat-t es true-t add ha 120 és 18 kozott van
     public static boolean vizsgalSzulDat(Date dateToConvert) {
+    	if(dateToConvert == null){return false;}
         LocalDate szulDat = dateToConvert.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     	LocalDate maiDatum = LocalDate.now();
     	return (maiDatum.compareTo(szulDat) >=18 && maiDatum.compareTo(szulDat) <=120 );
