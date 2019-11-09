@@ -11,35 +11,61 @@ Figyeljen, hogy a lehető legteljesebb megoldást adja!
     public static void main(String[] args) {
     try{
         Scanner scan = new Scanner(System.in);
-        System.out.print("The amount due: ");
+        System.out.print("A fizetendő összeg: ");
         int amount = scan.nextInt();
-        System.out.print("The amount paid: ");
+        System.out.print("A fizetett összeg: ");
         int paid = scan.nextInt();
 /*
        int paid = 100000;
        int amount = 15000;
 */
-        System.out.println("Your change is: " + (paid-amount) + " Ft = " + moneyBack(amount, paid));
+        System.out.println("A visszajáró összeg: " + moneyBack(amount, paid));
     }
     catch (Exception e){
-        System.err.println("A formátum nem megfelelő! Csak egész számot adhat meg!");
+        System.err.println("Hiba történt! Egész számot adjon meg! Az második érteknek >= kell lenie az első értékkel.");
     }
     }
+    public static int differencE(int amount, int paid){
+        return (paid-amount);
+    }
+
+    public static int roundDifference(int amount, int paid){
+        int difference = paid - amount;
+        switch (difference % 10 ) {
+            case 2:
+            case 7: return difference-2;
+            case 1:
+            case 6: return difference-1;
+            case 4:
+            case 9: return difference+1;
+            case 3:
+            case 8: return difference+2;
+        }
+     return difference;
+    }
+
 
     public static StringBuilder moneyBack(int amount, int paid){
         int [] denominations = {20000, 10000, 5000, 2000, 1000, 500, 200, 100, 50, 10, 5};
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder stringBuilder1 = new StringBuilder();
+        StringBuilder stringBuilder2 = new StringBuilder();
 
-        int difference = paid - amount;
+        int difference = roundDifference(amount, paid);
+        if (difference == 0){
+            return stringBuilder1.append("Nincs visszajáró!");
+        }
+
+        stringBuilder1.append(differencE(amount,paid) + " Ft => " + difference + " = ");
 
         for(int i=0; i<denominations.length; i++){
             if(difference > denominations[i] ||  difference == denominations[i]){
-               int maradek = difference / denominations[i];
-               stringBuilder.append(maradek +"*"+denominations[i]+"Ft + " );
-               difference = difference - maradek * denominations[i];
+               int div = difference / denominations[i];
+               difference = difference - div * denominations[i];
+               stringBuilder2.append(div +"*"+denominations[i]+"Ft + " );
             }
          }
-        stringBuilder.delete(stringBuilder.length()-2, stringBuilder.length());
-        return stringBuilder;
+        stringBuilder2.delete(stringBuilder2.length()-2, stringBuilder2.length());
+        stringBuilder1.append(stringBuilder2);
+        return stringBuilder1;
     }
 }
