@@ -17,13 +17,13 @@ public class ComperatorArgonSoft {
     public static void main(String[] args) {
         // write your code here
         List<Employee> employees = new ArrayList<Employee>();
-        employees.add(new Employee("Valaki Sanyi", 180, 70) );
-        employees.add(new Employee("Bassd Ferike", 180, 80));
-        employees.add(new Employee("Aaezaz Laci", 180, 70));
-        employees.add(new Employee("AztaPisti", 190, 90));
-        employees.add(new Employee("FfftaPisti", 195, 90));
+        employees.add(new Employee("Valaki   Sanyi", 180, 70) );
+        employees.add(new Employee(" Valaki Sanyi", 180, 70));
+        employees.add(new Employee("Aaezaz Baszd Laci", 180, 70));
+        employees.add(new Employee("AaezazBaszdkLaci", 180, 70));
+        employees.add(new Employee("Fffta   Pisti", 195, 90));
         employees.add(new Employee("RrretaPisti", 160, 90));
-        employees.add(new Employee("Wdfsfdfsdfaezaz Laci", 180, 70));
+        employees.add(new Employee("Wdfsfdfsdfae Laci", 180, 70));
 
         for (int i=0; i<employees.size(); i++){
            employees.get(i).setNoSpaceName(employees.get(i).getName().replaceAll("\\s", ""));

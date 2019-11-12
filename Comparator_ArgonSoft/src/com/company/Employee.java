@@ -77,12 +77,12 @@ public class Employee implements Comparable {
     public int compareTo(Object o) {
         int compareHeight = ((Employee) o).getHeight();
         int compareWeight = ((Employee) o).getWeight();
-        String compareName = ((Employee) o).getName();
+        String compareName = ((Employee) o).getNoSpaceName();
 
         int c;
         c = compareHeight -this.height;
         if (c == 0) c = this.weight - compareWeight;
-        if (c == 0) c = compareName.length() - this.name.length();
+        if (c == 0) c = compareName.length() - this.noSpaceName.length();
         return c;
 
     }
